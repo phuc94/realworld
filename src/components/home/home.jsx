@@ -1,4 +1,4 @@
-import Feed from "./feed";
+import Feed from "../feed/feed";
 import Tags from "./tags";
 import Banner from "./banner";
 import { useState, useEffect } from "react";

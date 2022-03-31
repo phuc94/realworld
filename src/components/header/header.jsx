@@ -38,7 +38,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink className={({ isActive }) => 'list-group-item' + (isActive ? ' active' : '')} to="/username">
+              <NavLink className={({ isActive }) => 'list-group-item' + (isActive ? ' active' : '')} to={`@${userInfo.username}`}>
                 <img src={userInfo.image} alt="user-img" />
                 {userInfo.username}
               </NavLink>

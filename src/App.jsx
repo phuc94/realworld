@@ -13,9 +13,11 @@ import SigninPage from './routes/signin';
 import SignupPage from './routes/signup';
 import EditorPage from './routes/editor';
 import SettingPage from './routes/setting';
+import UserPage from './routes/user';
 
 const App = () => {
-  const isAuthorized = useSelector(state => state.user.authorized);
+  const user = useSelector(state => state.user.info);
+  console.log(user?.username);
   return (
     <BrowserRouter>
       <Header />
@@ -27,6 +29,7 @@ const App = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/editor" element={<EditorPage />} />
         <Route path="/settings" element={<SettingPage />} />
+        <Route path={`@${user?.username}`} element={<UserPage />} />
       </Routes>
     </BrowserRouter>
   )

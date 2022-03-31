@@ -1,14 +1,14 @@
 import request from './request';
 
-export const getFeedAPI = (feed = 'user', query=undefined,controller) => {
+export const getFeedAPI = (path, query=undefined,controller) => {
   let param = '';
   if (query) {
     for (const [key, value] of Object.entries(query)) {
       param += `?${key}=${value}`;
     }
   }
-  const path = (feed == 'global') ? ('/' + param) : ('/feed' + param);
-  return request('/articles' + path,'get', {}, controller);
+  const url = path + param;
+  return request(url,'get', {}, controller);
 };
 
 export const createArticleAPI = (data) => {
