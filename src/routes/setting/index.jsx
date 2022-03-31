@@ -1,5 +1,8 @@
+import SettingForm from "../../components/setting/setting"
+
 const SettingPage = () => {
   return (
-    <h1>Setting page</h1>
+    <SettingForm />
   )
-}
+};
+export default SettingPage;

@@ -1,8 +1,8 @@
-import './home.scss';
+import Home from '../../components/home/home'
 
 const HomePage = () => {
   return (
-    <h1>Home</h1>
+    <Home />
   )
 };
 export default HomePage;

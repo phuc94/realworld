@@ -1,2 +1,14 @@
-@import './_core/breakpoint.scss';
-@import './_core/mixin.scss';
+@import
+  './_core/breakpoint.scss',
+  './_core/mixin.scss',
+  './_core/variable.scss',
+  './_core/reset.scss';
+@import
+  './layout.scss',
+  './components/header.scss',
+  './components/home.scss',
+  './components/feedTab.scss',
+  './components/form.scss',
+  './components/editorForm.scss',
+  './components/settingForm.scss',
+  './components/signin.scss';

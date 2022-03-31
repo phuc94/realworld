@@ -1,42 +1,60 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { testAPI } from "../../service/user";
+import { signinAPI, getCurrentUserAPI } from "../../service/user";
 
 const initialState = {
-  text: 'user init state'
+  authorized: false
 }
 
-export const fetchArticle = createAsyncThunk(
-  'fetchArticle',
-  async () => {
-    const response = await testAPI();
-    return response.body;
+export const signin = createAsyncThunk(
+  'signin',
+  async (formData) => {
+    const response = await signinAPI(formData);
+    return response.data;
   }
-)
+);
+
+export const getCurrentUser = createAsyncThunk(
+  'getCurrentUser',
+  async () => {
+    const response = await getCurrentUserAPI();
+    return response.data;
+  }
+);
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers : {
-    test : (state) => {
-      console.log('updating');
-      state.test = 'updated';
+    logout : (state) => {
+      console.log('logout');
+      localStorage.removeItem('jwt-token');
+      state.user = {};
+      state.authorized = false;
     }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchArticle.pending, (state, action) => {
+      .addCase(signin.pending, (state, action) => {
         console.log('pending');
       })
-      .addCase(fetchArticle.rejected, (state, action) => {
+      .addCase(signin.rejected, (state, action) => {
         console.log('rejected');
       })
-      .addCase(fetchArticle.fulfilled, (state, action) => {
-        state.data = action.payload;
+      .addCase(signin.fulfilled, (state, action) => {
+        state.info = action.payload.user;
+        state.authorized = true;
+        localStorage.setItem('jwt-token', action.payload.user.token);
+        console.log('fulfilled');
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.info = action.payload.user;
+        state.authorized = true;
         console.log('fulfilled');
       })
   }
 })
 
-export const { test } = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 export default userSlice.reducer;

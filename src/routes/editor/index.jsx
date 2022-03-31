@@ -1,5 +1,8 @@
+import EditorForm from '../../components/editor/editor'
+
 const EditorPage = () => {
   return (
-    <h1>Editor Page</h1>
+    <EditorForm />
   )
-}
+};
+export default EditorPage;
