@@ -30,6 +30,11 @@ export const userSlice = createSlice({
       localStorage.removeItem('jwt-token');
       state.user = {};
       state.authorized = false;
+    },
+    update : (state, action) => {
+      console.log('update');
+      console.log(action);
+      state.info = action.payload.user;
     }
   },
   extraReducers: (builder) => {
@@ -55,6 +60,6 @@ export const userSlice = createSlice({
   }
 })
 
-export const { logout } = userSlice.actions;
+export const { logout, update } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateUserAPI } from "../../service/user";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/slices/userSlice";
+import { update } from "../../redux/slices/userSlice";
 
 const formInitialState = {
   user: {
@@ -50,6 +51,7 @@ const SettingForm = () => {
     e.preventDefault();
     updateUserAPI(formState).then(res => {
       if (res.status == 200) {
+        dispatch(update(res.data));
         navigate('/');
       }
     })
