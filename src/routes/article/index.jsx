@@ -1,6 +1,8 @@
+import Article from "../../components/article/article";
+
 const ArticlePage = () => {
   return (
-    <h1>Article</h1>
+    <Article />
   )
 };
 export default ArticlePage;

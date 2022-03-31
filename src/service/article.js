@@ -14,3 +14,15 @@ export const getFeedAPI = (path, query=undefined,controller) => {
 export const createArticleAPI = (data) => {
   return request('/articles', 'post', data)
 };
+
+export const getArticleAPI = (slug) => {
+  return request(`/articles/${slug}`, 'get')
+};
+
+export const favoriteArticleAPI = (slug) => {
+  return request(`/articles/${slug}/favorite`, 'post')
+};
+
+export const unfavoriteArticleAPI = (slug) => {
+  return request(`/articles/${slug}/favorite`, 'delete')
+};

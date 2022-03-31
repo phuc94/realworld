@@ -1,4 +1,4 @@
-import FeedItem from "./feedItem";
+import ArticleItem from "./articleItem";
 import FeedTabs from "./feedTabs";
 import { useEffect } from "react";
 import { getFeedAPI } from "../../service/article";
@@ -13,13 +13,13 @@ const Feed = ({ tabOnClick, feedData, setFeedData }) => {
       case 'Global Feed':
         return '/articles';
       case 'Your Feed':
-        return '/feed';
+        return '/articles/feed';
       case 'My Articles':
         return `/articles?author=${user}`;
       case 'Favorited Articles':
         return `/articles?favorited=${user}`;
       default:
-        return 'articles';
+        return '/articles';
     }
   }
 
@@ -75,7 +75,7 @@ const Feed = ({ tabOnClick, feedData, setFeedData }) => {
             )
             :
             feedData.arr.map(item =>
-              <FeedItem key={item.slug} data={item} />
+              <ArticleItem key={item.slug} data={item} />
             )
         }
       </div>

@@ -30,6 +30,7 @@ const App = () => {
         <Route path="/editor" element={<EditorPage />} />
         <Route path="/settings" element={<SettingPage />} />
         <Route path={`@${user?.username}`} element={<UserPage />} />
+        <Route path="/article/:slug" element={<ArticlePage />} />
       </Routes>
     </BrowserRouter>
   )
