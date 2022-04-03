@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { favoriteArticleAPI, unfavoriteArticleAPI } from "../../service/article";
 import Author from "../author/author";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ArticleItem = ({ data }) => {
   const [isFavorited, setIsFavorited] = useState(data.favorited);
   const [isPending, setIsPending] = useState(false);
+  const isAuthorized = useSelector(state => state.user.authorized);
+  const navigate = useNavigate();
+
+  const toArticleDetail = () => {
+    navigate(`/article/${data.slug}`)
+  };
+
   const onFavorite = e => {
+    if (isPending) return;
     setIsPending(prev => !prev);
-    if (isFavorited) {
+    if (isAuthorized && isFavorited) {
       unfavoriteArticleAPI(data.slug).then(res => {
         if (res.status == 200) {
           setIsFavorited(prev => !prev);
@@ -22,9 +32,8 @@ const ArticleItem = ({ data }) => {
         }
       })
     }
-
   };
-  console.log(data);
+
   return (
     <div className="feed-tab">
       <div className="feed-tab__info">
@@ -40,15 +49,15 @@ const ArticleItem = ({ data }) => {
           <span> {data.favoritesCount} </span>
         </button>
       </div>
-      <div className="feed-tab__content">
+      <div onClick={() => toArticleDetail()} className="feed-tab__content">
         <h1>{data.title}</h1>
         <p>{data.description}</p>
       </div>
       <div className="feed-tab__cta">
-        <span className="feed-tab__read-more">Read more...</span>
+        <span onClick={() => toArticleDetail()} className="feed-tab__read-more">Read more...</span>
         <div className="feed-tab__tags">
           {data.tagList.map(tag => (
-            <span>{tag}</span>
+            <span onClick={() => toArticleDetail()}>{tag}</span>
           ))
           }
         </div>

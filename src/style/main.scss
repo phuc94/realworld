@@ -1,16 +1,16 @@
-@import
-  './_core/breakpoint.scss',
-  './_core/mixin.scss',
-  './_core/variable.scss',
-  './_core/reset.scss';
-@import
-  './layout.scss',
-  './components/header.scss',
-  './components/home.scss',
-  './components/user.scss',
-  './components/author.scss',
-  './components/feedTab.scss',
-  './components/form.scss',
-  './components/editorForm.scss',
-  './components/settingForm.scss',
-  './components/signin.scss';
+@import './_core/breakpoint.scss',
+'./_core/mixin.scss',
+'./_core/variable.scss',
+'./_core/reset.scss';
+@import './layout.scss',
+'./components/header.scss',
+'./components/home.scss',
+'./components/article.scss',
+'./components/user.scss',
+'./components/comment.scss',
+'./components/author.scss',
+'./components/feedTab.scss',
+'./components/form.scss',
+'./components/editorForm.scss',
+'./components/settingForm.scss',
+'./components/signin.scss';

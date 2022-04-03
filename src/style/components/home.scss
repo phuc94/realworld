@@ -2,8 +2,9 @@
   width: 100%;
   display: flex;
   gap: 2rem;
+  padding-top: 3rem;
   @include responsive;
-  margin:auto;
+  margin: auto;
 
   &__wrapper {
     width: 100%;
@@ -17,17 +18,19 @@
   &__tabs {
     list-style-type: none;
     display: flex;
-    border-bottom: 1px solid rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 
     li {
       padding: 0.5rem 1rem;
       color: $primary;
       cursor: pointer;
+
       &.active {
         border-bottom: 2px solid $primary;
       }
     }
   }
+
   &__loading {
     margin-top: 2rem;
     color: #373a3c;
@@ -40,12 +43,13 @@
   border-radius: 4px;
 
   &__wrapper {
-    max-width: 30%;
+    flex-basis: 25%;
   }
 
   &__content {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     gap: 0.5rem;
     margin-top: 0.5rem;
 
@@ -76,6 +80,7 @@
     font-family: "Titillium Web", sans-serif;
     color: $white;
   }
+
   p {
     color: $white;
     text-align: center;

@@ -1,16 +1,19 @@
 .feed-tab {
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding: 1.5rem 0;
+
   &__info {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   &__cta {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   &__favorite {
     border: 1px solid $primary;
     padding: 0.25rem 0.5rem;
@@ -28,15 +31,19 @@
       color: $white;
       background-color: $primary;
     }
+
     &.--pending {
       color: $white;
       background-color: #a3d7a3;
     }
   }
+
   &__tags {
     display: flex;
     gap: 0.5rem;
+
     span {
+      cursor: pointer;
       font-weight: 300;
       font-size: 0.8rem;
       border: 1px solid #ddd;
@@ -45,17 +52,23 @@
       border-radius: 10rem;
     }
   }
+
   &__read-more {
+    cursor: pointer;
     font-size: 0.8rem;
     font-weight: 300;
     color: #bbb;
   }
+
   &__content {
+    cursor: pointer;
+
     h1 {
       font-weight: 600;
       font-size: 1.5rem;
       margin-bottom: 3px;
     }
+
     p {
       font-weight: 300;
       color: #999;

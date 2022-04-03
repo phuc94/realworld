@@ -63,6 +63,7 @@ const SettingForm = () => {
 
   return (
     <div className="setting-form form">
+      <h1 className="setting-form__title">Your Settings</h1>
       <form action="" onSubmit={e => onFormSubmit(e)}>
         <fieldset>
           <input

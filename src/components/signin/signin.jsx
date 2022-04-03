@@ -12,7 +12,7 @@ const formInitialState = {
 };
 
 const SigninForm = ({ isSignin, formSubmit }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [formState, setFormState] = useState(formInitialState);
   const isAuthorized = useSelector(state => state.user.authorized);
 

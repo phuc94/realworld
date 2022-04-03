@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import produce from 'immer';
 
 const Tags = ({ tagOnClick }) => {
-  const [tags, setTags] = useState({ arr: [] });
+  const [tags, setTags] = useState({ arr: undefined });
 
   useEffect(() => {
     getTagAPI().then(res => {
@@ -19,14 +19,21 @@ const Tags = ({ tagOnClick }) => {
         <p>Popular tags</p>
         <div className="tags__content">
           {
-            tags.arr.map((tag, index) => (
-              <span
-                onClick={e => tagOnClick(e)}
-                key={index}
-              >
-                {tag}
-              </span>
-            ))
+            (tags.arr == undefined) ?
+              (
+                <p>Loading tags...</p>
+              )
+              :
+              (
+                tags.arr.map((tag, index) => (
+                  <span
+                    onClick={e => tagOnClick(e)}
+                    key={index}
+                  >
+                    {tag}
+                  </span>
+                ))
+              )
           }
         </div>
       </div>

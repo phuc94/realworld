@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { signinAPI, getCurrentUserAPI } from "../../service/user";
+import { signinAPI, signupAPI, getCurrentUserAPI } from "../../service/user";
 
 const initialState = {
   authorized: false
@@ -9,6 +9,14 @@ export const signin = createAsyncThunk(
   'signin',
   async (formData) => {
     const response = await signinAPI(formData);
+    return response.data;
+  }
+);
+
+export const signup = createAsyncThunk(
+  'signup',
+  async (formData) => {
+    const response = await signupAPI(formData);
     return response.data;
   }
 );
@@ -46,6 +54,12 @@ export const userSlice = createSlice({
         console.log('rejected');
       })
       .addCase(signin.fulfilled, (state, action) => {
+        state.info = action.payload.user;
+        state.authorized = true;
+        localStorage.setItem('jwt-token', action.payload.user.token);
+        console.log('fulfilled');
+      })
+      .addCase(signup.fulfilled, (state, action) => {
         state.info = action.payload.user;
         state.authorized = true;
         localStorage.setItem('jwt-token', action.payload.user.token);

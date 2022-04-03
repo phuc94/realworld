@@ -52,7 +52,12 @@ const Home = () => {
 
   return (
     <div className="home__wrapper">
-      <Banner />
+      {
+        isAuthorized ?
+          (<span></span>)
+          :
+          (<Banner />)
+      }
       <div className="home">
         <Feed
           tabOnClick={tabOnClick}
