@@ -2,15 +2,18 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+
   &>div>img {
     border-radius: 100%;
     height: 32px;
     width: 32px;
   }
+
   p {
     color: $primary;
     font-weight: 500;
   }
+
   span {
     color: #bbb;
     font-size: 0.8rem;
@@ -19,7 +22,9 @@
   &__wrapper {
     display: flex;
     justify-content: space-between;
+    padding: 1rem 0 3rem 0;
   }
+
   &__cta {
     display: flex;
     align-items: center;
@@ -32,18 +37,22 @@
       border-radius: 0.2rem;
       border: 1px solid transparent;
       transition: all 0.2s ease;
+
       &.--edit {
         border-color: #ccc;
         color: #ccc;
         margin-right: 0.25rem;
+
         &:hover {
           background-color: #ccc;
           color: $white;
         }
       }
+
       &.--delete {
         border-color: $red;
         color: $red;
+
         &:hover {
           background-color: $red;
           color: $white;
