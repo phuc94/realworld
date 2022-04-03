@@ -1,7 +1,7 @@
 const Author = ({ author, createdAt }) => {
   return (
     <div className="author ">
-      <div>
+      <div className="author__img">
         <img src={author?.image} alt="profile" />
       </div>
       <div>
