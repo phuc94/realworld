@@ -12,6 +12,10 @@ export const getCurrentUserAPI = () => {
   return request('/user','get');
 };
 
+export const getUserAPI = (username) => {
+  return request(`/profiles/${username}`,'get');
+};
+
 export const updateUserAPI = (data) => {
   return request('/user','put',data);
 };

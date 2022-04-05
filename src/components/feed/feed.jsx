@@ -5,8 +5,8 @@ import { getFeedAPI } from "../../service/article";
 import produce from "immer";
 import { useSelector } from "react-redux";
 
-const Feed = ({ tabOnClick, feedData, setFeedData }) => {
-  const user = useSelector(state => state.user?.info?.username);
+const Feed = ({ tabOnClick, feedData, setFeedData, username }) => {
+  // const user = useSelector(state => state.user?.info?.username);
 
   const pathSelector = (activeTab) => {
     switch (activeTab) {
@@ -15,9 +15,9 @@ const Feed = ({ tabOnClick, feedData, setFeedData }) => {
       case 'Your Feed':
         return '/articles/feed';
       case 'My Articles':
-        return `/articles?author=${user}`;
+        return `/articles?author=${username}`;
       case 'Favorited Articles':
-        return `/articles?favorited=${user}`;
+        return `/articles?favorited=${username}`;
       default:
         return '/articles';
     }

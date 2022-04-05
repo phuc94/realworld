@@ -1,7 +1,8 @@
 import Info from "./info";
 import Feed from "../feed/feed";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import produce from "immer";
+import { getUserAPI } from "../../service/user";
 
 const initState = {
   tag: false,
@@ -14,8 +15,18 @@ const initState = {
   arr: []
 }
 
-const User = () => {
+const User = ({ username }) => {
+  const [userInfo, setUserInfo] = useState({});
   const [feedData, setFeedData] = useState(initState);
+
+  useEffect(() => {
+    if (username == undefined) return;
+    getUserAPI(username).then(res => {
+      if (res.status == 200) {
+        setUserInfo(res.data.profile);
+      }
+    })
+  }, [username])
 
   const tabOnClick = e => {
     console.log(feedData)
@@ -30,8 +41,12 @@ const User = () => {
 
   return (
     <div className="user">
-      <Info />
+      <Info
+        userInfo={userInfo}
+        setUserInfo={setUserInfo}
+      />
       <Feed
+        username={username}
         tabOnClick={tabOnClick}
         feedData={feedData}
         setFeedData={setFeedData}
