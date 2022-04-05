@@ -62,6 +62,36 @@
           color: $white;
         }
       }
+
+      &.--follow {
+        border-color: $primary;
+        color: $primary;
+
+        &:hover {
+          background-color: $primary;
+          color: $white;
+        }
+      }
+
+      &.--favourited {
+        color: $white;
+        background-color: $primary;
+      }
+
+      &.--favorite-pending {
+        color: $white !important;
+        background-color: #a3d7a3 !important;
+      }
+
+      &.--followed {
+        background-color: #e6e6e6;
+        border-color: #adadad;
+        color: #373a3c;
+      }
+
+      &.--follow-pending {
+        opacity: 0.8;
+      }
     }
   }
 }

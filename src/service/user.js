@@ -15,3 +15,11 @@ export const getCurrentUserAPI = () => {
 export const updateUserAPI = (data) => {
   return request('/user','put',data);
 };
+
+export const followUserAPI = (username) => {
+  return request(`/profiles/${username}/follow`,'post');
+};
+
+export const unfollowUserAPI = (username) => {
+  return request(`/profiles/${username}/follow`,'delete');
+};

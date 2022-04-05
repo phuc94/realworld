@@ -26,3 +26,19 @@ export const favoriteArticleAPI = (slug) => {
 export const unfavoriteArticleAPI = (slug) => {
   return request(`/articles/${slug}/favorite`, 'delete')
 };
+
+export const getCommentAPI = (slug) => {
+  return request(`/articles/${slug}/comments`, 'get')
+};
+
+export const deleteArticleAPI = (slug) => {
+  return request(`/articles/${slug}`, 'delete')
+};
+
+export const addCommentAPI = (slug, body) => {
+  return request(`/articles/${slug}/comments`, 'post', body)
+};
+
+export const deleteCommentAPI = (slug, id) => {
+  return request(`/articles/${slug}/comments/${id}`, 'delete')
+};
