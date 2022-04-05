@@ -13,7 +13,7 @@ const CommentInput = ({ slug, setRefetch }) => {
     }
     addCommentAPI(slug, bodyObj).then(res => {
       if (res.status == 200) {
-        console.log('200');
+        setBody('');
         setRefetch(prev => prev = prev + 1);
       }
     });
