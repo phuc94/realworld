@@ -16,6 +16,11 @@
   p {
     color: $primary;
     font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   span {
