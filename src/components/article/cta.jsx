@@ -29,7 +29,6 @@ const ArticleCTA = (props) => {
     if (authorState.isFavorited) {
       unfavoriteArticleAPI(articleData.slug).then(res => {
         if (res.status == 200) {
-          console.log(res);
           setAuthorState(produce(draft => {
             draft.isFavorPending = false;
             draft.isFavorited = false;
@@ -39,7 +38,6 @@ const ArticleCTA = (props) => {
     } else {
       favoriteArticleAPI(articleData.slug).then(res => {
         if (res.status == 200) {
-          console.log(res);
           setAuthorState(produce(draft => {
             draft.isFavorPending = false;
             draft.isFavorited = true;
@@ -57,7 +55,6 @@ const ArticleCTA = (props) => {
     if (authorState.isFollow) {
       unfollowUserAPI(articleData.author.username).then(res => {
         if (res.status == 200) {
-          console.log(res);
           setAuthorState(produce(draft => {
             draft.isFollowPending = false;
             draft.isFollow = false;
@@ -67,7 +64,6 @@ const ArticleCTA = (props) => {
     } else {
       followUserAPI(articleData.author.username).then(res => {
         if (res.status == 200) {
-          console.log(res);
           setAuthorState(produce(draft => {
             draft.isFollowPending = false;
             draft.isFollow = true;

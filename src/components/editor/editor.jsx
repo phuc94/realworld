@@ -1,18 +1,20 @@
 import { useState } from "react";
 import produce from "immer";
 import { createArticleAPI } from "../../service/article";
+import { useNavigate } from "react-router-dom";
 
 const formInitialState = {
   article: {
     title: '',
     description: '',
     body: '',
-    tagList: [],
+    tagList: '',
   }
 };
 
 const EditorForm = () => {
   const [formState, setFormState] = useState(formInitialState);
+  const navigate = useNavigate();
 
   const onInputChange = e => {
     const name = e.target.name;
@@ -28,9 +30,10 @@ const EditorForm = () => {
     let formData;
     formData = JSON.parse(JSON.stringify(formState));
     formData.article.tagList = formData.article.tagList.split(/[, ]+/);
-    console.log(formData);
     createArticleAPI(formData).then(res => {
-      console.log(res);
+      if (res.status == 200 || res.status == 204) {
+        navigate("/");
+      }
     });
   }
 

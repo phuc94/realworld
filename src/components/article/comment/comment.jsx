@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { deleteCommentAPI } from "../../../service/article";
 
-const Comment = ({ comment, slug }) => {
+const Comment = ({ comment, slug, setRefetch }) => {
   const [isAuthor, setIsAuthor] = useState(false);
   const username = useSelector(state => state.user.info.username);
 
@@ -16,7 +16,7 @@ const Comment = ({ comment, slug }) => {
   const onDeleteComment = () => {
     deleteCommentAPI(slug, comment.id).then(res => {
       if (res.status == 204) {
-        console.log('deleted');
+        setRefetch(prev => prev = prev + 1);
       }
     })
   }

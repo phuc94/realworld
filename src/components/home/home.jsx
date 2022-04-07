@@ -32,7 +32,6 @@ const Home = () => {
   }, [isAuthorized])
 
   const tabOnClick = e => {
-    console.log(feedData)
     setFeedData(produce(draft => {
       draft.activeTab = e.target.innerHTML;
       if (draft.tag == true) {
@@ -42,7 +41,6 @@ const Home = () => {
     }))
   }
   const tagOnClick = e => {
-    console.log(feedData)
     setFeedData(produce(draft => {
       if (draft.tag == true) {
         draft.tabs.pop();

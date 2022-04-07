@@ -29,7 +29,6 @@ const User = ({ username }) => {
   }, [username])
 
   const tabOnClick = e => {
-    console.log(feedData)
     setFeedData(produce(draft => {
       draft.activeTab = e.target.innerHTML;
       if (draft.tag == true) {

@@ -14,7 +14,6 @@ const Pagination = ({ feedData, onPaginate }) => {
       });
     }
     setPaginationState(paginationArr);
-    console.log(paginationArr);
   }, [feedData])
 
   const onPageClick = e => {

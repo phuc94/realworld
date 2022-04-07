@@ -34,42 +34,33 @@ export const userSlice = createSlice({
   initialState,
   reducers : {
     logout : (state) => {
-      console.log('logout');
       localStorage.removeItem('jwt-token');
       state.user = {};
       state.authorized = false;
     },
     update : (state, action) => {
-      console.log('update');
-      console.log(action);
       state.info = action.payload.user;
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(signin.pending, (state, action) => {
-        console.log('pending');
       })
       .addCase(signin.rejected, (state, action) => {
-        console.log('rejected');
       })
       .addCase(signin.fulfilled, (state, action) => {
         state.info = action.payload.user;
         state.authorized = true;
         localStorage.setItem('jwt-token', action.payload.user.token);
-        console.log('fulfilled');
       })
       .addCase(signup.fulfilled, (state, action) => {
         state.info = action.payload.user;
         state.authorized = true;
         localStorage.setItem('jwt-token', action.payload.user.token);
-        console.log('fulfilled');
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.info = action.payload.user;
         state.authorized = true;
-        console.log('fulfilled');
       })
   }
 })

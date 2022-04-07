@@ -4,7 +4,6 @@ import Comment from "./comment";
 import { getCommentAPI } from "../../../service/article";
 
 const CommentSection = ({ slug }) => {
-  console.log(slug);
   const [comments, setComments] = useState([]);
   const [refetch, setRefetch] = useState(0);
 
@@ -24,6 +23,7 @@ const CommentSection = ({ slug }) => {
             comment={comment}
             key={comment.id}
             slug={slug}
+            setRefetch={setRefetch}
           />
         ))
       }

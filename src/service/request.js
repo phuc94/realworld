@@ -26,8 +26,6 @@ const request = (path, method, body={}, controller = undefined) => {
 }
 
 // const request = (path,method,body={}) => {
-//   console.log('request', path);
-//   console.log(jwtToken);
 
 //   if (jwtToken) {
 //     return superagent

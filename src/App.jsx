@@ -17,7 +17,6 @@ import UserPage from './routes/user';
 
 const App = () => {
   const user = useSelector(state => state.user.info);
-  console.log(user?.username);
   return (
     <BrowserRouter>
       <Header />

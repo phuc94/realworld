@@ -8,14 +8,12 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuthorized = useSelector(state => state.user.authorized);
-  console.log(isAuthorized);
 
   if (!isAuthorized && localStorage.getItem('jwt-token')) {
     dispatch(getCurrentUser());
   }
 
   const userInfo = useSelector(state => state.user.info);
-  console.log(userInfo);
   return (
     <header className="header">
       <a onClick={() => navigate("/")} className="header__logo">conduit</a>
