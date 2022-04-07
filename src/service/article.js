@@ -1,12 +1,13 @@
 import request from './request';
 
 export const getFeedAPI = (path, query=undefined,controller) => {
-  let param = '';
+  let param = '?';
   if (query) {
     for (const [key, value] of Object.entries(query)) {
-      param += `?${key}=${value}`;
+      param += `${key}=${value}&`;
     }
   }
+  param = param.slice(0, param.length - 1);
   const url = path + param;
   return request(url,'get', {}, controller);
 };

@@ -12,7 +12,10 @@ const initState = {
     'Global Feed'
   ],
   isLoading: false,
-  arr: []
+  arr: [],
+  articlesCount: 0,
+  offset: 0,
+  limit: 10
 }
 
 const Home = () => {

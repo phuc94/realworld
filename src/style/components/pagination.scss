@@ -1,0 +1,41 @@
+.pagination {
+  margin-bottom: 180px;
+  margin-top: 2rem;
+
+  span {
+    color: $primary;
+    border: 1px solid $primary;
+    display: inline-block;
+    background-color: transparent;
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  span:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  span:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: none;
+  }
+
+  span:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none;
+  }
+
+  span.--active {
+    background-color: $primary;
+    color: $white;
+    opacity: 1;
+  }
+
+  span.--active:hover {
+    text-decoration: none;
+  }
+}

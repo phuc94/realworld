@@ -3,11 +3,9 @@ import FeedTabs from "./feedTabs";
 import { useEffect } from "react";
 import { getFeedAPI } from "../../service/article";
 import produce from "immer";
-import { useSelector } from "react-redux";
+import Pagination from "./pagination";
 
 const Feed = ({ tabOnClick, feedData, setFeedData, username }) => {
-  // const user = useSelector(state => state.user?.info?.username);
-
   const pathSelector = (activeTab) => {
     switch (activeTab) {
       case 'Global Feed':
@@ -26,25 +24,28 @@ const Feed = ({ tabOnClick, feedData, setFeedData, username }) => {
   useEffect(() => {
     setFeedData(produce(draft => { draft.isLoading = true }));
     const controller = new AbortController;
-    let query;
+    let query = {
+      offset: feedData.offset,
+      limit: feedData.limit
+    }
     let path;
 
     if (feedData.tag == true) {
-      query = {
-        tag: feedData.activeTab
-      }
+      query.tag = feedData.activeTab;
     }
     path = pathSelector(feedData.activeTab);
-    console.log(path);
 
     getFeedAPI(path, query, controller)
       .then(res => {
         if (res) {
-          const newState = produce(draft => {
-            draft.isLoading = false;
-            draft.arr = res?.data?.articles
-          })
-          setFeedData(newState);
+          if (res.status == 200) {
+            const newState = produce(draft => {
+              draft.isLoading = false;
+              draft.arr = res?.data?.articles
+              draft.articlesCount = res?.data?.articlesCount;
+            })
+            setFeedData(newState);
+          }
         }
       });
 
@@ -53,6 +54,28 @@ const Feed = ({ tabOnClick, feedData, setFeedData, username }) => {
     };
 
   }, [feedData.activeTab])
+
+  const onPaginate = (offset) => {
+    setFeedData(produce(draft => {
+      draft.isLoading = true
+    }));
+    const controller = new AbortController;
+    const path = pathSelector(feedData.activeTab);
+    const query = {
+      limit: feedData.limit,
+      offset
+    }
+    getFeedAPI(path, query, controller).then(res => {
+      if (res.status == 200) {
+        const newState = produce(draft => {
+          draft.isLoading = false;
+          draft.arr = res?.data?.articles;
+          draft.offset = offset;
+        })
+        setFeedData(newState);
+      }
+    })
+  }
 
   return (
     <div className="feed">
@@ -77,6 +100,14 @@ const Feed = ({ tabOnClick, feedData, setFeedData, username }) => {
             feedData.arr.map(item =>
               <ArticleItem key={item.slug} data={item} />
             )
+        }
+        {
+          feedData.articlesCount > feedData.limit ?
+            (
+              <Pagination feedData={feedData} onPaginate={onPaginate} />
+            )
+            :
+            (<></>)
         }
       </div>
     </div>
